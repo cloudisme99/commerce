@@ -1,5 +1,6 @@
-package com.example.commerce;
+package com.example.commerce.configuration;
 
+import com.example.commerce.CommerceApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 

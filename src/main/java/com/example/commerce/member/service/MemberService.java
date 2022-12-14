@@ -1,8 +1,10 @@
 package com.example.commerce.member.service;
 
+import com.example.commerce.admin.AdminMemberRepository;
 import com.example.commerce.member.entity.Member;
 import com.example.commerce.member.repository.MemberRepository;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Service;
 public class MemberService {
 
     private final MemberRepository memberRepository;
+    private final AdminMemberRepository adminMemberRepository;
 
     public void register(String userEmail, String userName, String password, String phone, String zipcode, String address) {
 
@@ -30,7 +33,7 @@ public class MemberService {
         member.setPassword(password);
         member.setPhone(phone);
         member.setStatus("정상");
-        member.setAdminYn(false);
+        member.setRole("USER");
         member.setZipcode(zipcode);
         member.setAddress(address);
         member.setRegisterDate(LocalDateTime.now());
@@ -45,5 +48,15 @@ public class MemberService {
 //        memberRepository.save(updateMember);
 //    }
 
+    // 회원정보수정
+//    public void updateDetail(String userEmail, String userName, String password, String phone, String zipcode, String address) {
+//        Member member = adminMemberRepository.getFirstByUserEmail(userEmail);
+//        member.setUserName(userName);
+//        member.setPassword(password);
+//        member.setPhone(phone);
+//        member.setZipcode(zipcode);
+//        member.setAddress(address);
+//        adminMemberRepository.save(member);
+//    }
 
 }

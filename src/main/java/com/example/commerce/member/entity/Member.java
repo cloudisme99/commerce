@@ -29,8 +29,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Entity(name = "member")
 public class Member implements UserDetails {
 
-    String ROLE_PREFIX = "ROLE_";
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
@@ -56,7 +54,6 @@ public class Member implements UserDetails {
     private String address;
 
     private String status;
-    //private boolean adminYn;
     private LocalDateTime registerDate;
     private LocalDateTime updateDate;
 
@@ -65,14 +62,14 @@ public class Member implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-        authorities.add(new SimpleGrantedAuthority(ROLE_PREFIX + role));
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + role));
 
         return authorities;
     }
 
     @Override
     public String getUsername() {
-        return String.valueOf(userId);
+        return String.valueOf(userName);
     }
 
     @Override

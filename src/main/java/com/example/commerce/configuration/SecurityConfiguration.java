@@ -33,15 +33,26 @@ public class SecurityConfiguration {
             .permitAll();
 
         http.authorizeRequests()
-            .antMatchers("/bucket").hasAnyRole("USER")
+//            .antMatchers("/admin/**").hasAnyRole("ADMIN")
+//            .antMatchers("/basket/**").hasAnyRole("USER")
             .anyRequest().permitAll();
 
+//        http.formLogin()
+//            .loginProcessingUrl("member/login")
+//            .usernameParameter("userEmail")
+//            .passwordParameter("password")
+//            .successHandler(userAuthenticationSuccessHandler)
+//            .failureHandler(userAuthenticationFailureHandler);
+
         http.formLogin()
-            .loginProcessingUrl("member/login")
-            .usernameParameter("userEmail")
-            .passwordParameter("password")
-            .successHandler(userAuthenticationSuccessHandler)
-            .failureHandler(userAuthenticationFailureHandler);
+                .loginPage("/member/login")
+                .usernameParameter("userEmail")
+                .passwordParameter("password")
+                .successHandler(userAuthenticationSuccessHandler)
+                .failureHandler(userAuthenticationFailureHandler)
+                .permitAll();
+
+
 
         http.sessionManagement()
             .maximumSessions(1)

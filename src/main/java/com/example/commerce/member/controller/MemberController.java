@@ -1,6 +1,7 @@
 package com.example.commerce.member.controller;
 
 import com.example.commerce.member.entity.Member;
+import com.example.commerce.member.model.MemberInput;
 import com.example.commerce.member.service.MemberService;
 import java.security.Principal;
 import java.util.HashMap;
@@ -42,11 +43,6 @@ public class MemberController {
         );
     }
 
-//    @PostMapping("/member/updatePassword")
-//    public void updatePassword(@RequestBody Member request) {
-//        memberService.updatePassword(request.getUserEmail());
-//    }
-
     //로그인
     @GetMapping("/login/success")
     public ResponseEntity notSession() {
@@ -71,11 +67,21 @@ public class MemberController {
         return "user만 접근";
     }
 
-
     //회원정보수정(transaction 오류있음)
 //    @PutMapping("/member/update")
-//    void updateDetail(@RequestParam String userEmail, @RequestBody String userName, String password, String phone, String zipcode, String address) {
-//        memberService.updateDetail(userEmail, userName, password, phone, zipcode, address);
+//    void updateDetail(@RequestParam String userEmail, @RequestBody MemberInput parameter) {
+//        memberService.updateDetail(userEmail, parameter);
+//    }
+
+//    @PutMapping("/member/update")
+//    public updateMemberResponse(@RequestParam String userEmail, @RequestBody Member request) {
+//        memberService.updateDetail(
+//            request.getUsername(),
+//            request.getPassword(),
+//            request.getPhone(),
+//            request.getZipcode(),
+//            request.getAddress()
+//        );
 //    }
 
 }

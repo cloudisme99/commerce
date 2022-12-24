@@ -5,8 +5,6 @@ import com.example.commerce.admin.entity.Item;
 import com.example.commerce.admin.repository.ItemRepository;
 import java.time.LocalDateTime;
 import java.util.List;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,13 +21,8 @@ public class AdminItemService {
         else throw new IllegalArgumentException("등록된 상품이 없습니다.");
     }
 
-
-    // category join 오류 (null로 입력됨)
     public void addItem(Category category, String itemName, String itemInfo, String itemImage, String itemPrice, int itemAmount) {
 
-//        Category cate = new Category();
-//        cate.setCategoryId();
-        System.out.println("category_service: "+category);
         Item item = new Item();
         item.setCategory(category);
         item.setItemName(itemName);
@@ -52,4 +45,10 @@ public class AdminItemService {
         itemRepository.delete(item);
     }
 
+    // item 검색
+    @Transactional
+    public List<Item> search(String keyword) {
+        List<Item> itemList = itemRepository.findByItemNameContaining(keyword);
+        return itemList;
+    }
 }

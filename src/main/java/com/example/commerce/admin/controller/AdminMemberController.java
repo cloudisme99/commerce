@@ -18,12 +18,6 @@ public class AdminMemberController {
 
     private final AdminMemberService adminMemberService;
 
-    //userEmail에 대한 member 조회
-//    @GetMapping("/admin/memberList")
-//    List<Member> readMember(@RequestParam String userEmail) {
-//        return adminMemberService.readMember(userEmail);
-//    }
-
     //member 전체 조회
     @GetMapping("/admin/membersList")
     List<Member> readMembers() {

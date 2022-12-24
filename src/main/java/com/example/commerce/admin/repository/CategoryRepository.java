@@ -9,7 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, String> {
 
-//    List<Category> deleteByCategoryName(String categoryName);
-
     Category findByCategoryName(String categoryName);
 }

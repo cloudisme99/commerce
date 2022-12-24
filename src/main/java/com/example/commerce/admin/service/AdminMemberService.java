@@ -12,14 +12,6 @@ public class AdminMemberService {
 
     private final MemberRepository memberRepository;
 
-    // member별 정보 보기
-//    public List<Member> readMember(String userEmail) {
-////        List<Member> members = memberRepository.findAll();
-////        if(!members.isEmpty()) return memberRepository.findAll();
-////        else throw new IllegalArgumentException("회원이 없습니다.");
-//        return memberRepository.findAllByUserEmail(userEmail);
-//    }
-
     public List<Member> readMembers() {
         List<Member> members = memberRepository.findAll();
         if(!members.isEmpty()) return memberRepository.findAll();

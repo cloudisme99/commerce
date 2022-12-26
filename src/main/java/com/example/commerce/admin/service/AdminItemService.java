@@ -1,10 +1,12 @@
 package com.example.commerce.admin.service;
 
+import com.example.commerce.admin.dto.ItemRequestDto;
 import com.example.commerce.admin.entity.Category;
 import com.example.commerce.admin.entity.Item;
+import com.example.commerce.admin.repository.CategoryRepository;
 import com.example.commerce.admin.repository.ItemRepository;
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,29 +16,27 @@ import org.springframework.transaction.annotation.Transactional;
 public class AdminItemService {
 
     private final ItemRepository itemRepository;
+    private final CategoryRepository categoryRepository;
 
     public List<Item> readItems() {
         List<Item> items = itemRepository.findAll();
-        if(!items.isEmpty()) return itemRepository.findAll();
-        else throw new IllegalArgumentException("등록된 상품이 없습니다.");
+        if(!items.isEmpty()) {
+            return items;
+        } else throw new IllegalArgumentException("등록된 상품이 없습니다.");
     }
 
-    public void addItem(Category category, String itemName, String itemInfo, String itemImage, String itemPrice, int itemAmount) {
+    @Transactional
+    public int addItem(int categoryId, ItemRequestDto dto) {
+        Optional<Category> category = categoryRepository.findByCategoryId(categoryId);
+        dto.setCategory(category.get());
 
-        Item item = new Item();
-        item.setCategory(category);
-        item.setItemName(itemName);
-        item.setItemInfo(itemInfo);
-        item.setItemImage(itemImage);
-        item.setItemPrice(itemPrice);
-        item.setItemAmount(itemAmount);
-        item.setItemRegisterDate(LocalDateTime.now());
+        Item item = dto.toEntity();
 
         itemRepository.save(item);
 
+        return dto.getCategory().getCategoryId();
     }
 
-    // item 삭제
     @Transactional
     public void deleteItem(String itemName) {
 
@@ -45,9 +45,8 @@ public class AdminItemService {
         itemRepository.delete(item);
     }
 
-    // item 검색
     @Transactional
-    public List<Item> search(String keyword) {
+    public List<Item> itemSearch(String keyword) {
         List<Item> itemList = itemRepository.findByItemNameContaining(keyword);
         return itemList;
     }

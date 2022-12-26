@@ -14,8 +14,9 @@ public class AdminMemberService {
 
     public List<Member> readMembers() {
         List<Member> members = memberRepository.findAll();
-        if(!members.isEmpty()) return memberRepository.findAll();
-        else throw new IllegalArgumentException("회원이 없습니다.");
+        if(!members.isEmpty()) {
+            return members;
+        } else throw new IllegalArgumentException("회원이 없습니다.");
     }
 
     //회원상태수정

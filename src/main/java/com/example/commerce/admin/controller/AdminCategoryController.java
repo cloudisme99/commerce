@@ -18,6 +18,7 @@ public class AdminCategoryController {
 
     private final AdminCategoryService adminCategoryService;
 
+    // 카테고리 조회
     @GetMapping("/category")
     List<Category> readCategories() {
         return adminCategoryService.readCategories();

@@ -15,8 +15,9 @@ public class AdminCategoryService {
 
     public List<Category> readCategories() {
         List<Category> categories = categoryRepository.findAll();
-        if(!categories.isEmpty()) return categoryRepository.findAll();
-        else throw new IllegalArgumentException("카테고리가 없습니다.");
+        if(!categories.isEmpty()){
+            return categories;
+        } else throw new IllegalArgumentException("카테고리가 없습니다.");
     }
 
     public void addCategory(String categoryName) {
@@ -32,7 +33,6 @@ public class AdminCategoryService {
 
     @Transactional
     public void deleteCategory(String categoryName) {
-        //List<Category> deleteCategory = categoryRepository.deleteByCategoryName(categoryName);
 
         Category category = categoryRepository.findByCategoryName(categoryName);
 

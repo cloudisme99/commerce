@@ -37,12 +37,12 @@ public class SecurityConfiguration {
 //            .antMatchers("/basket/**").hasAnyRole("USER")
             .anyRequest().permitAll();
 
-//        http.formLogin()
-//            .loginProcessingUrl("member/login")
-//            .usernameParameter("userEmail")
-//            .passwordParameter("password")
-//            .successHandler(userAuthenticationSuccessHandler)
-//            .failureHandler(userAuthenticationFailureHandler);
+        http.formLogin()
+            .loginProcessingUrl("member/login")
+            .usernameParameter("userEmail")
+            .passwordParameter("password")
+            .successHandler(userAuthenticationSuccessHandler)
+            .failureHandler(userAuthenticationFailureHandler);
 
         http.formLogin()
                 .loginPage("/member/login")
@@ -61,19 +61,6 @@ public class SecurityConfiguration {
         return http.build();
     }
 
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.authenticationProvider(userAuthenticationProvider);
-//    }
-
-//    @Bean
-//    protected AuthenticationManagerBuilder configure(AuthenticationManagerBuilder auth) throws Exception {
-//
-//        return auth.authenticationProvider(userAuthenticationProvider);
-//    }
-
-
-    // 수정해야함
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
         throws Exception {

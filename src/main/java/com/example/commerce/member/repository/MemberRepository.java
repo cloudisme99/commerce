@@ -18,4 +18,6 @@ public interface MemberRepository extends JpaRepository<Member, String> {
     Member getFirstByUserEmail(String userEmail);
 
     Member getFirstByUserId(String userId);
+
+    Optional<Member> findByUserId(long userId);
 }

@@ -1,6 +1,5 @@
 package com.example.commerce.admin.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +24,6 @@ public class Category {
     @JoinColumn(name = "category_id")
     private int categoryId;
 
-//    @Column(name = "categoryName")
     private String categoryName;
 
     private boolean usingYn;
